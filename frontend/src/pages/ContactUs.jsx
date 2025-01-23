@@ -84,21 +84,21 @@ const ContactUs = () => {
 
                 {/* Information Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                    <div className="bg-green-50 shadow-md rounded-lg p-6">
+                    <div className="bg-yellow-100 shadow-md rounded-lg p-6">
                         <h3 className="text-xl font-semibold text-gray-800 mb-2">Email Us</h3>
                         <p className="text-gray-600">info@treecommunity.org</p>
                         <a href="mailto:info@treecommunity.org" className="text-green-600 hover:underline mt-2 block">
                             Send an Email
                         </a>
                     </div>
-                    <div className="bg-green-50 shadow-md rounded-lg p-6">
+                    <div className="bg-yellow-100 shadow-md rounded-lg p-6">
                         <h3 className="text-xl font-semibold text-gray-800 mb-2">Call Us</h3>
                         <p className="text-gray-600">+123 456 7890</p>
                         <a href="tel:+1234567890" className="text-green-600 hover:underline mt-2 block">
                             Call Now
                         </a>
                     </div>
-                    <div className="bg-green-50 shadow-md rounded-lg p-6">
+                    <div className="bg-yellow-100 shadow-md rounded-lg p-6">
                         <h3 className="text-xl font-semibold text-gray-800 mb-2">Feedback & Suggestions</h3>
                         <p className="text-gray-600">We value your input! Let us know how we can improve.</p>
                         <a href="#feedback" className="text-green-600 hover:underline mt-2 block">
@@ -108,7 +108,7 @@ const ContactUs = () => {
                 </div>
 
                 {/* Contact Form */}
-                <div className="bg-blue-50 shadow-md rounded-lg p-8 mb-10">
+                <div className="bg-yellow-100 shadow-md rounded-lg p-8 mb-10">
                     <h2 className="text-3xl font-bold text-gray-800 mb-6">Get in Touch</h2>
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -200,10 +200,11 @@ const ContactUs = () => {
                     </div>
                 </div>
 
-                {/* Footer Section */}
-                <div className="mt-10 text-center text-gray-600">
-                    <p>&copy; 2025 Tree Planting Community. All rights reserved.</p>
-                </div>
+
+
+            </div>
+            <div className=" flex justify-center items-center mt-10 pt-3 text-center text-white bg-gray-900 pb-4">
+                <p>&copy; 2025 Vanayana. All rights reserved.</p>
             </div>
         </div>
     );

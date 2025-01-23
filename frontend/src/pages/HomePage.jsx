@@ -1,16 +1,30 @@
 import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import MapComponent from "../components/MapComponent";
 import { FaDiscord, FaSquareInstagram, FaSquareXTwitter, FaTelegram, FaWhatsapp } from "react-icons/fa6";
-const HomePage = () => {
-    useEffect(() => {
-        const mapElement = document.getElementById('map');
-        if (mapElement && !mapElement._leaflet_id) {
-            const map = L.map('map').setView([37.7749, -122.4194], 13);
+import { useAuthStore } from "../store/useAuthStore";
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+const HomePage = () => {
+    const navigate = useNavigate();
+    const { authUser } = useAuthStore();
+
+    const handleGetInvolvedClick = () => {
+        if (authUser) {
+            navigate("/services"); // Redirect to the Services page if logged in
+        } else {
+            navigate("/login"); // Redirect to the Login page if not logged in
+        }
+    };
+
+    useEffect(() => {
+        const mapElement = document.getElementById("map");
+        if (mapElement && !mapElement._leaflet_id) {
+            const map = L.map("map").setView([37.7749, -122.4194], 13);
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                 maxZoom: 19,
             }).addTo(map);
-
 
             const marker = L.marker([37.7749, -122.4194]).addTo(map);
             marker
@@ -22,6 +36,7 @@ const HomePage = () => {
                 .openPopup();
         }
     }, []);
+
     return (
         <div className="bg-yellow-200">
             {/* Hero Section */}
@@ -35,11 +50,14 @@ const HomePage = () => {
                         our planet's health, combat climate change, and create greener spaces for future generations.
                     </p>
                     <div className="mt-8 flex justify-center lg:justify-start gap-4">
-                        <button className="bg-green-500 text-white py-3 px-6 rounded-lg font-medium shadow hover:bg-green-600">
+                        <button
+                            onClick={handleGetInvolvedClick}
+                            className="bg-green-500 text-white py-3 px-6 rounded-lg font-medium shadow hover:bg-green-600"
+                        >
                             Get Involved
                         </button>
                         <button className="border border-green-500 text-green-500 py-3 px-6 rounded-lg font-medium hover:bg-gray-200">
-                            Contact Us
+                            <Link to="/contact">Contact Us</Link>
                         </button>
                     </div>
                 </div>
@@ -51,147 +69,18 @@ const HomePage = () => {
                     />
                 </div>
             </section>
-
-            {/* Stats Section */}
-            <section className="bg-yellow-50 py-12">
-                <div className="container mx-auto px-4 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-                    <div>
-                        <h3 className="text-3xl font-bold text-gray-800">10,000+</h3>
-                        <p className="text-gray-600 mt-2">Trees Planted</p>
-                    </div>
-                    <div>
-                        <h3 className="text-3xl font-bold text-gray-800">500+</h3>
-                        <p className="text-gray-600 mt-2">Volunteers</p>
-                    </div>
-                    <div>
-                        <h3 className="text-3xl font-bold text-gray-800">300+</h3>
-                        <p className="text-gray-600 mt-2">Community Events</p>
-                    </div>
-                    <div>
-                        <h3 className="text-3xl font-bold text-gray-800">50</h3>
-                        <p className="text-gray-600 mt-2">Green Zones Created</p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Services Section */}
-            <section className="py-16 bg-gray-100">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-center text-gray-800">
-                        How We Serve
-                    </h2>
-                    <p className="mt-4 text-gray-600 text-center">
-                        From tree planting to environmental education, we offer services
-                        that inspire action and nurture our environment.
-                    </p>
-                    <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {/* Service Card */}
-                        <div className="bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition">
-                            <h3 className="text-lg font-bold text-gray-800">
-                                Tree Planting Campaigns
-                            </h3>
-                            <p className="mt-2 text-gray-600">
-                                Organizing large-scale tree planting events in urban and rural areas.
-                            </p>
-                            <img
-                                src="./home4.png"
-                                alt="Service Image"
-                                className="h-48 w-full object-cover rounded-lg mt-2 transform transition-transform duration-300 hover:scale-105"
-                            />
-
-                            <button className="mt-4 text-green-500 font-medium hover:text-green-600">
-                                Learn More
-                            </button>
-                        </div>
-
-                        {/* Other service cards (similar structure) */}
-                        <div className="bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition">
-                            <h3 className="text-lg font-bold text-gray-800">
-                                Environmental Workshops
-                            </h3>
-                            <p className="mt-2 text-gray-600">
-                                Educating communities on sustainable practices and environmental care.
-                            </p>
-                            <img
-                                src="./home3.png"
-                                alt="Service Image"
-                                className="h-48 w-full object-cover rounded-lg mt-2 transform transition-transform duration-300 hover:scale-105"
-                            />
-
-                            <button className="mt-4 text-green-500 font-medium hover:text-green-600">
-                                Learn More
-                            </button>
-                        </div>
-                        <div className="bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition">
-                            <h3 className="text-lg font-bold text-gray-800">
-                                Green Space Development
-                            </h3>
-                            <p className="mt-2 text-gray-600">
-                                Transforming vacant lands into vibrant green zones for everyone to enjoy.
-                            </p>
-
-                            <img
-                                src="./home2.png"
-                                alt="Service Image"
-                                className="h-48 w-full object-cover rounded-lg mt-2 transform transition-transform duration-300 hover:scale-105"
-                            />
-
-                            <button className="mt-4 text-green-500 font-medium hover:text-green-600">
-                                Learn More
-                            </button>
-                        </div>
-                        <div className="bg-white p-6 shadow-lg rounded-lg hover:shadow-xl transition">
-                            <h3 className="text-lg font-bold text-gray-800">
-                                Volunteer Programs
-                            </h3>
-                            <p className="mt-2 text-gray-600">
-                                Engaging individuals and groups to contribute to environmental restoration.
-                            </p>
-                            <img
-                                src="./home1.png"
-                                alt="Service Image"
-                                className="h-48 w-full object-cover rounded-lg mt-2 transform transition-transform duration-300 hover:scale-105"
-                            />
-
-                            <button className="mt-4 text-green-500 font-medium hover:text-green-600">
-                                Learn More
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* About Us Section */}
-            <section className="py-16 bg-yellow-200">
-                <div className="container mx-auto px-4 text-center">
-                    <h2 className="text-3xl font-bold text-gray-800">About Our Initiative</h2>
-                    <p className="mt-4 text-gray-600">
-                        Our mission is to restore nature by planting trees and empowering
-                        communities to take environmental action for a sustainable future.
-                    </p>
-                    <button className="mt-8 bg-green-500 text-white py-3 px-6 rounded-lg font-medium shadow hover:bg-green-600">
-                        Learn More
-                    </button>
-                </div>
-            </section>
-
-            {/* Footer Section */}
             <footer className="bg-gray-800 text-white py-10">
                 <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div>
                         <h3 className="text-lg font-bold">Our Mission</h3>
                         <p className="mt-2 text-gray-400">
                             To plant trees and foster environmental stewardship through community action.
-                            We are committed to making a positive impact on the environment by bringing people together to engage in sustainable practices and reforest the earth, one tree at a time.
-
-
                         </p>
                     </div>
                     <div>
                         <h3 className="text-lg font-bold">Our Vision</h3>
                         <p className="mt-2 text-gray-400">
                             To create a world where nature thrives, and every individual is connected to the environment.
-                            We envision a future where sustainable practices are embraced by all, where green spaces flourish, and where communities work together to protect and restore the natural world for generations to come.
                         </p>
                     </div>
                     <div>
@@ -199,7 +88,6 @@ const HomePage = () => {
                         <p className="mt-2 text-gray-400">Email: info@treecommunity.org</p>
                         <p className="mt-2 text-gray-400">Phone: +123 456 7890</p>
                         <div className="flex pt-3 space-x-4 ">
-
                             <FaSquareXTwitter className="h-8 w-8 hover:text-gray-300" />
                             <FaSquareInstagram className="h-8 w-8 hover:text-gray-300" />
                             <FaDiscord className="h-8 w-8 hover:text-gray-300" />
@@ -213,12 +101,11 @@ const HomePage = () => {
                             <div id="map" style={{ height: '200px' }}></div>
                         </div>
                     </div>
-
                 </div>
-
                 <p className="flex mt-6 justify-center">@2025 Vanayana. All rights reserved</p>
-
             </footer>
+
+            {/* The rest of your code remains unchanged */}
         </div>
     );
 };
