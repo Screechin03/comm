@@ -10,10 +10,24 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-}));
+const cors = require('cors');
+
+const allowedOrigins = [
+  'http://localhost:5173', // Development
+  'https://comm-2.onrender.com', // Production
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 app.use("/api/users", userRoutes);
 app.use("/api/services", serviceRoutes);
