@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Home, Info, Briefcase, Phone } from "lucide-react"; // Import Lucide icons
-import { useAuthStore } from "../store/useAuthStore"; // Import Zustand store
+import { Home, Info, Briefcase, Phone } from "lucide-react";
+import { useAuthStore } from "../store/useAuthStore";
 import MapComponent from "./MapComponent";
 
 const Navbar = () => {
