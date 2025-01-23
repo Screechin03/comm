@@ -10,8 +10,7 @@ import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-import ProfilePage from "./pages/ProfilePage";
-import MapComponent from "./components/MapComponent";
+
 import CreateServicePage from "./pages/CreateServicePage";
 import ContactUs from "./pages/ContactUs";
 import Details from "./pages/Details";

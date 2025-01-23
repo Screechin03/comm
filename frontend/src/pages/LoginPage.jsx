@@ -21,7 +21,6 @@ const LoginPage = () => {
 
     return (
         <div className="h-screen flex">
-
             <img
                 className="hidden lg:block lg:w-1/2"
                 src="./green2.png"
